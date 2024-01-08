@@ -64,6 +64,8 @@ def init_oled():
 
     time.sleep(3)
 
+
+def limpiar_oled():
     # Limpia la pantalla.
     oled.fill(0)
     oled.show()
@@ -135,6 +137,7 @@ if __name__ == "__main__":
 
     try:
         init_oled()
+        limpiar_oled()
         demo_tablero_coche(args.cascaded, args.block_orientation, args.rotate, args.reverse_order)
     except KeyboardInterrupt:
         pass

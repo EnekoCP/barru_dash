@@ -37,15 +37,8 @@ oled = adafruit_ssd1306.SSD1306_I2C(WIDTH, HEIGHT, i2c, addr=0x3C, reset=oled_re
 oled.fill(0)
 oled.show()
 
-# Create blank image for drawing.
-# Make sure to create image with mode '1' for 1-bit color.
-image = Image.new("1", (oled.width, oled.height))
-
 # Get drawing object to draw on image.
-draw = ImageDraw.Draw(image)
-
-# Draw a white background
-draw.rectangle((0, 0, oled.width, oled.height), outline=255, fill=255)
+draw = ImageDraw.Draw(oled.image)
 
 # Load default font.
 font = ImageFont.load_default()
@@ -55,12 +48,12 @@ image_path = "subaru.bmp"  # Cambia la ruta a tu imagen
 imageSubaru = Image.open(image_path).convert("1")  # Convierte a modo 1-bit (blanco y negro)
 
 # Escala la imagen si es necesario
-imageSubaru = image.resize((32, 32), Image.ANTIALIAS)
+imageSubaru = imageSubaru.resize((32, 32), Image.ANTIALIAS)
 
 
 def init_oled():
-    oled.text("SUBARU IMPREZA", oled.width, oled.height, 255)
-    oled.text("SIMHUB by CHUME", oled.width - 1, oled.height - 1, 255)
+    draw.text((0, 0), "SUBARU IMPREZA", font=font, fill=255)
+    draw.text((0, 12), "SIMHUB by CHUME", font=font, fill=255)
 
     # Display updated image
     oled.show()
@@ -75,9 +68,8 @@ def init_oled():
 # Function to update OLED with new data
 def update_oled(rpm):
 
-    # Dibuja texto en dos líneas
-    oled.text((35, 8), "RMP: " + rpm, font=font, fill=255)
-    oled.text((35, 22), "TEMP: 50º", font=font, fill=255)
+    draw.text((0, 0), "RMP: " + rpm, font=font, fill=255)
+    draw.text((0, 12), "TEMP: 50º", font=font, fill=255)
 
     # Display updated image
     oled.show()

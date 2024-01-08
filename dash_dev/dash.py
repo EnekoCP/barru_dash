@@ -44,7 +44,7 @@ draw = ImageDraw.Draw(image)
 
 draw.rectangle((0, 0, oled.width, oled.height), outline=0, fill=0)
 # Load default font.
-font = ImageFont.load_default()
+font = ImageFont.LAYOUT_BASIC
 
 # Carga una imagen desde un archivo
 image_path = "subaru.bmp"  # Cambia la ruta a tu imagen
@@ -75,8 +75,6 @@ def limpiar_oled():
 def update_oled(rpm):
     limpiar_oled()
     # Crea un objeto ImageDraw para dibujar en la imagen
-    draw = ImageDraw.Draw(imageSubaru)
-
     draw.text((0, 0), "RPM: {}".format(rpm), font=font, fill=255)
     draw.text((0, 12), "TEMP: 50º", font=font, fill=255)
 

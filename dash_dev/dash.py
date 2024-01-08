@@ -71,7 +71,7 @@ def init_oled():
 # Function to update OLED with new data
 def update_oled(rpm):
 
-    draw.text((0, 0), "RMP: " + rpm, font=font, fill=255)
+    draw.text((0, 0), "RMP: " + str(rpm), font=font, fill=255)
     draw.text((0, 12), "TEMP: 50º", font=font, fill=255)
 
     # Display updated image

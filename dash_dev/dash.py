@@ -44,7 +44,7 @@ draw = ImageDraw.Draw(image)
 
 draw.rectangle((0, 0, oled.width, oled.height), outline=0, fill=0)
 # Load default font.
-font = ImageFont.LAYOUT_BASIC
+font = ImageFont.load_default()
 
 # Carga una imagen desde un archivo
 image_path = "subaru.bmp"  # Cambia la ruta a tu imagen
@@ -55,8 +55,8 @@ imageSubaru = imageSubaru.resize((32, 32), Image.ANTIALIAS)
 
 
 def init_oled():
-    draw.text((0, 0), "SUBARU IMPREZA", font=font, fill=255)
-    draw.text((0, 12), "SIMHUB by CHUME", font=font, fill=255)
+    draw.text((oled.width//2, oled.height // 2), "SUBARU IMPREZA", font=font, fill=255)
+    draw.text((oled.width//2, (oled.height // 2)+12), "SIMHUB by CHUME", font=font, fill=255)
 
     # Display updated image
     oled.image(image)

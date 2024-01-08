@@ -37,8 +37,10 @@ oled = adafruit_ssd1306.SSD1306_I2C(WIDTH, HEIGHT, i2c, addr=0x3C, reset=oled_re
 oled.fill(0)
 oled.show()
 
+image = Image.new("1", (oled.width, oled.height))
+
 # Get drawing object to draw on image.
-draw = ImageDraw.Draw(oled.image)
+draw = ImageDraw.Draw(image)
 
 # Load default font.
 font = ImageFont.load_default()

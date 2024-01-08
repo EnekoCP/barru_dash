@@ -60,20 +60,12 @@ imageSubaru = image.resize((32, 32), Image.ANTIALIAS)
 
 def init_oled():
     # Dibuja el primer texto.
-    draw.text(
-        (BORDER, BORDER),
-        "SUBARU IMPREZA",
-        font=font,
-        fill=255,
-    )
-
+    oled.text("SUBARU IMPREZA")
     # Dibuja el segundo texto.
-    draw.text(
-        (BORDER, BORDER + 12),  # Ajusta la posición vertical según sea necesario.
-        "SimHub by Chume",
-        font=font,
-        fill=255,
-    )
+    oled.text("SimHub by Chume")
+
+    # Display updated image
+    oled.show()
 
     time.sleep(3)
 
@@ -84,12 +76,10 @@ def init_oled():
 
 # Function to update OLED with new data
 def update_oled(rpm):
-    # Muestra la imagen en la pantalla OLED
-    oled.image(image)
 
     # Dibuja texto en dos líneas
-    draw.text((35, 8), "1234567890", font=font, fill=255)
-    draw.text((35, 22), "JOHN CARTER", font=font, fill=255)
+    oled.text((35, 8), "RMP: " + rpm, font=font, fill=255)
+    oled.text((35, 22), "TEMP: 50º", font=font, fill=255)
 
     # Display updated image
     oled.show()
@@ -106,7 +96,6 @@ def mostrar_marcha_y_rpm(device, marcha, rpm):
             draw.rectangle((0, 0, device.width, device.height), outline="red", fill="red")
 
 def demo_tablero_coche(n, block_orientation, rotate, inreverse):
-    init_oled()
     # crear el dispositivo de la matriz
     serial = spi(port=0, device=0, gpio=noop())
     device = max7219(serial, cascaded=n or 1, block_orientation=block_orientation,
@@ -150,6 +139,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     try:
+        init_oled()
         demo_tablero_coche(args.cascaded, args.block_orientation, args.rotate, args.reverse_order)
     except KeyboardInterrupt:
         pass

@@ -3,6 +3,7 @@ import time
 import argparse
 
 import pygame
+import framebuf
 
 from luma.led_matrix.device import max7219
 from luma.core.interface.serial import spi, noop
@@ -59,8 +60,8 @@ imageSubaru = image.resize((32, 32), Image.ANTIALIAS)
 
 
 def init_oled():
-    oled.text("SUBARU IMPREZA", (oled.width, oled.height))
-    oled.text("SIMHUB by CHUME", (oled.width - 1, oled.height - 1))
+    oled.text("SUBARU IMPREZA", oled.width, oled.height, framebuf.MONO_HLSB)
+    oled.text("SIMHUB by CHUME", oled.width - 1, oled.height - 1, framebuf.MONO_HLSB)
 
     # Display updated image
     oled.show()

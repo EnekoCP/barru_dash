@@ -20,7 +20,7 @@ def reproducir_sonido(cambio_marcha):
         pygame.mixer.music.play()
 def mostrar_marcha_y_rpm(device, marcha, rpm):
     with canvas(device) as draw:
-        text(draw, (1, 0), f" {marcha}", fill="white", font=proportional(CP437_FONT))
+        text(draw, (1, 0), f"{marcha}", fill="white", font=proportional(CP437_FONT))
         #text(draw, (0, 10), f"RPM: {rpm}", fill="white", font=proportional(CP437_FONT))
         if rpm >= 9000:
             draw.rectangle((0, 0, device.width, device.height), outline="red", fill="red")

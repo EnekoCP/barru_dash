@@ -73,6 +73,7 @@ def limpiar_oled():
 
 # Function to update OLED with new data
 def update_oled(rpm):
+    limpiar_oled()
 
     draw.text((0, 0), "RPM: {}".format(rpm), font=font, fill=255)
     draw.text((0, 12), "TEMP: 50º", font=font, fill=255)

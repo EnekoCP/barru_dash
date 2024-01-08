@@ -59,6 +59,7 @@ def init_oled():
     draw.text((0, 12), "SIMHUB by CHUME", font=font, fill=255)
 
     # Display updated image
+    oled.image(image)
     oled.show()
 
     time.sleep(3)
@@ -75,6 +76,7 @@ def update_oled(rpm):
     draw.text((0, 12), "TEMP: 50º", font=font, fill=255)
 
     # Display updated image
+    oled.image(image)
     oled.show()
 
 def reproducir_sonido(cambio_marcha):

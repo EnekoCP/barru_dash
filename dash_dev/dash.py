@@ -47,36 +47,49 @@ draw = ImageDraw.Draw(image)
 # Draw a white background
 draw.rectangle((0, 0, oled.width, oled.height), outline=255, fill=255)
 
-# Draw a smaller inner rectangle
-draw.rectangle(
-    (BORDER, BORDER, oled.width - BORDER - 1, oled.height - BORDER - 1),
-    outline=0,
-    fill=0,
-)
-
 # Load default font.
 font = ImageFont.load_default()
+
+# Dibuja el primer texto.
+draw.text(
+    (BORDER, BORDER),
+    "SUBARU IMPREZA",
+    font=font,
+    fill=255,
+)
+
+# Dibuja el segundo texto.
+draw.text(
+    (BORDER, BORDER + 12),  # Ajusta la posición vertical según sea necesario.
+    "SimHub by Chume",
+    font=font,
+    fill=255,
+)
+
+time.sleep(3)
+
+# Limpia la pantalla.
+oled.fill(0)
+oled.show()
+
+# Carga una imagen desde un archivo
+image_path = "subaru.bmp"  # Cambia la ruta a tu imagen
+image = Image.open(image_path).convert("1")  # Convierte a modo 1-bit (blanco y negro)
+
+# Escala la imagen si es necesario
+image = image.resize((32, 32), Image.ANTIALIAS)
 
 
 # Function to update OLED with new data
 def update_oled(rpm):
-    # Clear previous data
-    draw.rectangle(
-        (BORDER, BORDER, oled.width - BORDER - 1, oled.height - BORDER - 1),
-        outline=0,
-        fill=0,
-    )
+    # Muestra la imagen en la pantalla OLED
+    oled.image(image, 0, 0)
 
-    # Draw new data
-    draw.text(
-        (BORDER, BORDER),
-        "RPM: {}".format(rpm),
-        font=font,
-        fill=255,
-    )
+    # Dibuja texto en dos líneas
+    draw.text((35, 8), "1234567890", font=font, fill=255)
+    draw.text((35, 22), "JOHN CARTER", font=font, fill=255)
 
     # Display updated image
-    oled.image(image)
     oled.show()
 
 def reproducir_sonido(cambio_marcha):

@@ -59,10 +59,8 @@ imageSubaru = image.resize((32, 32), Image.ANTIALIAS)
 
 
 def init_oled():
-    # Dibuja el primer texto.
-    oled.text("SUBARU IMPREZA")
-    # Dibuja el segundo texto.
-    oled.text("SimHub by Chume")
+    oled.text((35, 8), "SUBARU IMPREZA", font=font, fill=255)
+    oled.text((35, 22), "SIMHUB by CHUME", font=font, fill=255)
 
     # Display updated image
     oled.show()

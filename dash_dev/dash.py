@@ -42,7 +42,7 @@ image = Image.new("1", (oled.width, oled.height))
 # Get drawing object to draw on image.
 draw = ImageDraw.Draw(image)
 
-draw.rectangle((0, 0, oled.width, oled.height), outline=255, fill=0)
+draw.rectangle((0, 0, oled.width, oled.height), outline=0, fill=0)
 # Load default font.
 font = ImageFont.load_default()
 
@@ -74,7 +74,7 @@ def limpiar_oled():
 # Function to update OLED with new data
 def update_oled(rpm):
 
-    draw.text((0, 0), "RMP: " + str(rpm), font=font, fill=255)
+    draw.text((0, 0), "RPM: {}".format(rpm), font=font, fill=255)
     draw.text((0, 12), "TEMP: 50º", font=font, fill=255)
 
     # Display updated image

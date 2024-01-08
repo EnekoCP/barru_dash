@@ -50,40 +50,42 @@ draw.rectangle((0, 0, oled.width, oled.height), outline=255, fill=255)
 # Load default font.
 font = ImageFont.load_default()
 
-# Dibuja el primer texto.
-draw.text(
-    (BORDER, BORDER),
-    "SUBARU IMPREZA",
-    font=font,
-    fill=255,
-)
-
-# Dibuja el segundo texto.
-draw.text(
-    (BORDER, BORDER + 12),  # Ajusta la posición vertical según sea necesario.
-    "SimHub by Chume",
-    font=font,
-    fill=255,
-)
-
-time.sleep(3)
-
-# Limpia la pantalla.
-oled.fill(0)
-oled.show()
-
 # Carga una imagen desde un archivo
 image_path = "subaru.bmp"  # Cambia la ruta a tu imagen
-image = Image.open(image_path).convert("1")  # Convierte a modo 1-bit (blanco y negro)
+imageSubaru = Image.open(image_path).convert("1")  # Convierte a modo 1-bit (blanco y negro)
 
 # Escala la imagen si es necesario
-image = image.resize((32, 32), Image.ANTIALIAS)
+imageSubaru = image.resize((32, 32), Image.ANTIALIAS)
+
+
+def init_oled():
+    # Dibuja el primer texto.
+    draw.text(
+        (BORDER, BORDER),
+        "SUBARU IMPREZA",
+        font=font,
+        fill=255,
+    )
+
+    # Dibuja el segundo texto.
+    draw.text(
+        (BORDER, BORDER + 12),  # Ajusta la posición vertical según sea necesario.
+        "SimHub by Chume",
+        font=font,
+        fill=255,
+    )
+
+    time.sleep(3)
+
+    # Limpia la pantalla.
+    oled.fill(0)
+    oled.show()
 
 
 # Function to update OLED with new data
 def update_oled(rpm):
     # Muestra la imagen en la pantalla OLED
-    oled.image(image, 0, 0)
+    oled.image(image)
 
     # Dibuja texto en dos líneas
     draw.text((35, 8), "1234567890", font=font, fill=255)
@@ -104,6 +106,7 @@ def mostrar_marcha_y_rpm(device, marcha, rpm):
             draw.rectangle((0, 0, device.width, device.height), outline="red", fill="red")
 
 def demo_tablero_coche(n, block_orientation, rotate, inreverse):
+    init_oled()
     # crear el dispositivo de la matriz
     serial = spi(port=0, device=0, gpio=noop())
     device = max7219(serial, cascaded=n or 1, block_orientation=block_orientation,

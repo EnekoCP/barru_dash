@@ -66,13 +66,8 @@ def init_oled():
 
 
 def limpiar_oled():
-    image = Image.new("1", (oled.width, oled.height))
-    # Get drawing object to draw on image.
-    draw = ImageDraw.Draw(image)
-    draw.rectangle((0, 0, oled.width, oled.height), outline=255, fill=0)
-
+    draw.rectangle((0, 0, oled.width, oled.height), outline=0, fill=0)
     # Limpia la pantalla.
-    oled.fill(0)
     oled.show()
 
 

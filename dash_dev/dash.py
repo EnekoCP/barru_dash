@@ -151,6 +151,13 @@ def mostrar_marcha_y_rpm(device, marcha, rpm):
     with canvas(device) as draw:
         text(draw, (1, 0), f"{marcha}", fill="white", font=proportional(CP437_FONT))
         # text(draw, (0, 10), f"RPM: {rpm}", fill="white", font=proportional(CP437_FONT))
+        if 0 <= rpm <= 3000:
+            init_led_green()
+        elif 3000 < rpm <= 5000:
+            init_led_yellow()
+        else:
+            init_led_red()
+
         if rpm >= 7500:
             draw.rectangle((0, 0, device.width, device.height), outline="red", fill="red")
 
@@ -176,12 +183,6 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
             # Simular el aumento de RPM
             rpm += 200
             update_oled(rpm)
-            if 0 <= rpm <= 3000:
-                init_led_green()
-            elif 3000 < rpm <= 5000:
-                init_led_yellow()
-            else:
-                init_led_red()
 
             if rpm > 8000:
                 off_led_red()

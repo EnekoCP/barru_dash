@@ -182,6 +182,13 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
             # Simular el aumento de RPM
             rpm += 500
             update_oled(rpm)
+            if 0 <= rpm <= 3000:
+                init_led_green()
+            elif 3000 < rpm <= 5000:
+                init_led_yellow()
+            else:
+                init_led_red()
+
             if rpm > 8000:
                 rpm = 0
                 cambio_marcha = True

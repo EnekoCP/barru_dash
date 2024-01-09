@@ -67,53 +67,50 @@ imageSubaru = imageSubaru.resize((32, 32), Image.ANTIALIAS)
 
 
 def init_led_green():
-    global led_green
-    if not led_green:
-        led_green = True
-        # Enciende el LED
-        GPIO.output(17, GPIO.HIGH)
-        print("LED encendido")
-    else:
-        led_green = False
-        # Apaga el LED
-        GPIO.output(17, GPIO.LOW)
-        print("LED apagado")
+    # Enciende el LED
+    GPIO.output(17, GPIO.HIGH)
+    print("LED encendido")
+
+
+def off_led_green():
+    # Apaga el LED
+    GPIO.output(17, GPIO.LOW)
+    print("LED apagado")
 
 
 def init_led_yellow():
-    global led_yellow
-    if not led_yellow:
-        led_yellow = True
-        # Enciende el LED
-        GPIO.output(27, GPIO.HIGH)
-        print("LED encendido")
-    else:
-        led_yellow = False
-        # Apaga el LED
-        GPIO.output(27, GPIO.LOW)
-        print("LED apagado")
+    # Enciende el LED
+    GPIO.output(27, GPIO.HIGH)
+    print("LED encendido")
+
+
+def off_led_yellow():
+    # Apaga el LED
+    GPIO.output(27, GPIO.LOW)
+    print("LED apagado")
 
 
 def init_led_red():
-    global led_red
-    if not led_red:
-        led_red = True
-        # Enciende el LED
-        GPIO.output(22, GPIO.HIGH)
-        print("LED encendido")
-    else:
-        led_red = False
-        # Apaga el LED
-        GPIO.output(22, GPIO.LOW)
-        print("LED apagado")
+    # Enciende el LED
+    GPIO.output(22, GPIO.HIGH)
+    print("LED encendido")
+
+def off_led_red():
+    # Apaga el LED
+    GPIO.output(22, GPIO.LOW)
+    print("LED apagado")
 
 
 def init_leds():
     init_led_red()
     time.sleep(1)
+    off_led_red()
     init_led_yellow()
     time.sleep(1)
+    off_led_yellow()
     init_led_green()
+    time.sleep(2)
+    off_led_green()
     reproducir_sonido(True)
 
 
@@ -190,6 +187,9 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
                 init_led_red()
 
             if rpm > 8000:
+                off_led_red()
+                off_led_green()
+                off_led_yellow()
                 rpm = 0
                 cambio_marcha = True
                 marcha += 1

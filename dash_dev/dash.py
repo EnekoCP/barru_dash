@@ -118,6 +118,11 @@ def off_led_red():
 
 
 def init_leds():
+    off_led_red()
+    off_led_green()
+    off_led_yellow()
+    time.sleep(1)
+
     init_led_red()
     time.sleep(1)
     off_led_red()

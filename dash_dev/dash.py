@@ -24,6 +24,10 @@ GPIO.setup(17, GPIO.OUT)  # Utiliza el pin GPIO17 para el LED
 GPIO.setup(27, GPIO.OUT)  # Utiliza el pin GPIO27 para el LED
 GPIO.setup(22, GPIO.OUT)  # Utiliza el pin GPIO22 para el LED
 
+led_green = False
+led_yellow = False
+led_red = False
+
 
 # Inicializamos pygame
 pygame.init()
@@ -64,37 +68,52 @@ imageSubaru = imageSubaru.resize((32, 32), Image.ANTIALIAS)
 
 
 def init_led_green():
+    global led_green
     # Enciende el LED
-    GPIO.output(17, GPIO.HIGH)
-    print("LED encendido")
+    if not led_green:
+        led_green = True
+        GPIO.output(17, GPIO.HIGH)
+        print("LED encendido")
 
 
 def off_led_green():
+    global led_green
     # Apaga el LED
     GPIO.output(17, GPIO.LOW)
+    led_green = False
     print("LED apagado")
 
 
 def init_led_yellow():
+    global led_yellow
     # Enciende el LED
-    GPIO.output(27, GPIO.HIGH)
-    print("LED encendido")
+    if not led_yellow:
+        led_yellow = True
+        GPIO.output(27, GPIO.HIGH)
+        print("LED encendido")
 
 
 def off_led_yellow():
+    global led_yellow
     # Apaga el LED
     GPIO.output(27, GPIO.LOW)
+    led_yellow = False
     print("LED apagado")
 
 
 def init_led_red():
+    global led_red
     # Enciende el LED
-    GPIO.output(22, GPIO.HIGH)
-    print("LED encendido")
+    if not led_red:
+        led_red = True
+        GPIO.output(22, GPIO.HIGH)
+        print("LED encendido")
 
 def off_led_red():
+    global led_red
     # Apaga el LED
     GPIO.output(22, GPIO.LOW)
+    led_red = False
     print("LED apagado")
 
 
@@ -151,7 +170,7 @@ def mostrar_marcha_y_rpm(device, marcha, rpm):
     with canvas(device) as draw:
         text(draw, (1, 0), f"{marcha}", fill="white", font=proportional(CP437_FONT))
         # text(draw, (0, 10), f"RPM: {rpm}", fill="white", font=proportional(CP437_FONT))
-        if 0 <= rpm <= 3000:
+        if 1000 <= rpm <= 3000:
             init_led_green()
         elif 3000 < rpm <= 5000:
             init_led_yellow()

@@ -16,6 +16,18 @@ import digitalio
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_ssd1306
 
+import RPi.GPIO as GPIO
+
+# Configuración de la biblioteca GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(17, GPIO.OUT)  # Utiliza el pin GPIO17 para el LED
+GPIO.setup(27, GPIO.OUT)  # Utiliza el pin GPIO27 para el LED
+GPIO.setup(22, GPIO.OUT)  # Utiliza el pin GPIO22 para el LED
+
+led_green = False
+led_yellow = False
+led_red = False
+
 # Inicializamos pygame
 pygame.init()
 
@@ -54,9 +66,60 @@ imageSubaru = Image.open(image_path).convert("1")  # Convierte a modo 1-bit (bla
 imageSubaru = imageSubaru.resize((32, 32), Image.ANTIALIAS)
 
 
+def init_led_green():
+    global led_green
+    if not led_green:
+        led_green = True
+        # Enciende el LED
+        GPIO.output(17, GPIO.HIGH)
+        print("LED encendido")
+    else:
+        led_green = False
+        # Apaga el LED
+        GPIO.output(17, GPIO.LOW)
+        print("LED apagado")
+
+
+def init_led_yellow():
+    global led_yellow
+    if not led_yellow:
+        led_yellow = True
+        # Enciende el LED
+        GPIO.output(27, GPIO.HIGH)
+        print("LED encendido")
+    else:
+        led_yellow = False
+        # Apaga el LED
+        GPIO.output(27, GPIO.LOW)
+        print("LED apagado")
+
+
+def init_led_red():
+    global led_red
+    if not led_red:
+        led_red = True
+        # Enciende el LED
+        GPIO.output(22, GPIO.HIGH)
+        print("LED encendido")
+    else:
+        led_red = False
+        # Apaga el LED
+        GPIO.output(22, GPIO.LOW)
+        print("LED apagado")
+
+
+def init_leds():
+    init_led_red()
+    time.sleep(1)
+    init_led_yellow()
+    time.sleep(1)
+    init_led_green()
+    reproducir_sonido(True)
+
+
 def init_oled():
     draw.text((0, 0), "SUBARU IMPREZA", font=font, fill=255)
-    draw.text((0, 12), "SIMHUB by CHUME", font=font, fill=255)
+    draw.text((0, 12), "SimHub by CHUME", font=font, fill=255)
 
     # Display updated image
     oled.image(image)
@@ -66,9 +129,10 @@ def init_oled():
 
 
 def limpiar_oled():
-    draw.rectangle((0, 0, oled.width, oled.height), outline=0, fill=0)
-    # Limpia la pantalla.
+    # Clear display.
+    oled.fill(0)
     oled.show()
+    draw.rectangle((0, 0, oled.width, oled.height), outline=0, fill=0)
 
 
 # Function to update OLED with new data
@@ -82,16 +146,20 @@ def update_oled(rpm):
     oled.image(image)
     oled.show()
 
+
 def reproducir_sonido(cambio_marcha):
     if cambio_marcha:
         pygame.mixer.music.load("cambioMarcha.mp3")  # Cambia "cambio_marcha.mp3" al nombre de tu archivo de sonido
         pygame.mixer.music.play()
+
+
 def mostrar_marcha_y_rpm(device, marcha, rpm):
     with canvas(device) as draw:
         text(draw, (1, 0), f"{marcha}", fill="white", font=proportional(CP437_FONT))
-        #text(draw, (0, 10), f"RPM: {rpm}", fill="white", font=proportional(CP437_FONT))
+        # text(draw, (0, 10), f"RPM: {rpm}", fill="white", font=proportional(CP437_FONT))
         if rpm >= 9000:
             draw.rectangle((0, 0, device.width, device.height), outline="red", fill="red")
+
 
 def demo_tablero_coche(n, block_orientation, rotate, inreverse):
     # crear el dispositivo de la matriz
@@ -99,6 +167,11 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
     device = max7219(serial, cascaded=n or 1, block_orientation=block_orientation,
                      rotate=rotate or 0, blocks_arranged_in_reverse_order=inreverse)
     print("Dispositivo creado")
+
+    print("APAGAR LEDS")
+    init_led_red()
+    init_led_green()
+    init_led_yellow()
 
     # iniciar la demostración
     marcha = 1
@@ -109,7 +182,7 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
             # Simular el aumento de RPM
             rpm += 100
             update_oled(rpm)
-            if rpm > 10000:
+            if rpm > 8000:
                 rpm = 0
                 cambio_marcha = True
                 marcha += 1
@@ -125,18 +198,23 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
     except KeyboardInterrupt:
         pass
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Argumentos para la demostración del tablero del coche',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('--cascaded', '-n', type=int, default=1, help='Número de matrices LED MAX7219 en cascada')
-    parser.add_argument('--block-orientation', type=int, default=0, choices=[0, 90, -90], help='Corrige la orientación del bloque al estar conectado verticalmente')
-    parser.add_argument('--rotate', type=int, default=0, choices=[0, 1, 2, 3], help='Rotar la pantalla 0=0°, 1=90°, 2=180°, 3=270°')
-    parser.add_argument('--reverse-order', type=bool, default=False, help='Establecer en verdadero si los bloques están en orden inverso')
+    parser.add_argument('--block-orientation', type=int, default=0, choices=[0, 90, -90],
+                        help='Corrige la orientación del bloque al estar conectado verticalmente')
+    parser.add_argument('--rotate', type=int, default=0, choices=[0, 1, 2, 3],
+                        help='Rotar la pantalla 0=0°, 1=90°, 2=180°, 3=270°')
+    parser.add_argument('--reverse-order', type=bool, default=False,
+                        help='Establecer en verdadero si los bloques están en orden inverso')
 
     args = parser.parse_args()
 
     try:
+        init_leds()
         init_oled()
         limpiar_oled()
         demo_tablero_coche(args.cascaded, args.block_orientation, args.rotate, args.reverse_order)

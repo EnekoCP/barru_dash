@@ -24,9 +24,6 @@ GPIO.setup(17, GPIO.OUT)  # Utiliza el pin GPIO17 para el LED
 GPIO.setup(27, GPIO.OUT)  # Utiliza el pin GPIO27 para el LED
 GPIO.setup(22, GPIO.OUT)  # Utiliza el pin GPIO22 para el LED
 
-led_green = False
-led_yellow = False
-led_red = False
 
 # Inicializamos pygame
 pygame.init()
@@ -177,7 +174,7 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
     try:
         while True:
             # Simular el aumento de RPM
-            rpm += 500
+            rpm += 200
             update_oled(rpm)
             if 0 <= rpm <= 3000:
                 init_led_green()

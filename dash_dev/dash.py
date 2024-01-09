@@ -193,11 +193,6 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
                      rotate=rotate or 0, blocks_arranged_in_reverse_order=inreverse)
     print("Dispositivo creado")
 
-    print("APAGAR LEDS")
-    #init_led_red()
-    #init_led_green()
-    #init_led_yellow()
-
     # iniciar la demostración
     marcha = 1
     rpm = 0
@@ -205,7 +200,7 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
     try:
         while True:
             # Simular el aumento de RPM
-            rpm += 200
+            rpm += 50
             update_oled(rpm)
 
             if rpm > 8000:

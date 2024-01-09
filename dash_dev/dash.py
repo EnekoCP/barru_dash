@@ -28,7 +28,6 @@ led_green = False
 led_yellow = False
 led_red = False
 
-
 # Inicializamos pygame
 pygame.init()
 
@@ -109,6 +108,7 @@ def init_led_red():
         GPIO.output(22, GPIO.HIGH)
         print("LED encendido")
 
+
 def off_led_red():
     global led_red
     # Apaga el LED
@@ -125,13 +125,10 @@ def init_leds():
 
     init_led_red()
     time.sleep(1)
-    off_led_red()
     init_led_yellow()
     time.sleep(1)
-    off_led_yellow()
     init_led_green()
     time.sleep(2)
-    off_led_green()
     reproducir_sonido(True)
 
 

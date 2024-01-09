@@ -130,9 +130,9 @@ def init_oled():
 
 def limpiar_oled():
     # Clear display.
-    oled.fill(0)
-    oled.show()
     draw.rectangle((0, 0, oled.width, oled.height), outline=0, fill=0)
+    # Limpia la pantalla.
+    oled.show()
 
 
 # Function to update OLED with new data

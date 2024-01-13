@@ -215,7 +215,7 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
                 init_led_yellow()
                 time.sleep(1)
                 marcha += 1
-                if marcha > 6:
+                if marcha > 5:
                     marcha = 1
 
             mostrar_marcha_y_rpm(device, marcha, rpm)

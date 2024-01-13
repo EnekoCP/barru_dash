@@ -120,11 +120,11 @@ def off_led_red():
 def init_leds():
     global led_red, led_yellow, led_green
     init_led_red()
-    time.sleep(1)
+    time.sleep(3)
     init_led_yellow()
-    time.sleep(1)
+    time.sleep(3)
     init_led_green()
-    time.sleep(2)
+    time.sleep(3)
     reproducir_sonido(True)
 
     led_green = False
@@ -197,7 +197,7 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
     try:
         while True:
             # Simular el aumento de RPM
-            rpm += 50
+            rpm += 200
             update_oled(rpm)
 
             if rpm > 8000:

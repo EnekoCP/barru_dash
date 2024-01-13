@@ -247,6 +247,9 @@ if __name__ == "__main__":
         init_leds()
         init_oled()
         limpiar_oled()
+        GPIO.output(17, GPIO.LOW)
+        GPIO.output(27, GPIO.LOW)
+        GPIO.output(22, GPIO.LOW)
         demo_tablero_coche(args.cascaded, args.block_orientation, args.rotate, args.reverse_order)
     except KeyboardInterrupt:
         pass

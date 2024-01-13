@@ -207,14 +207,11 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
                 init_led_green()
             elif 3000 < rpm <= 5000:
                 pass
-                # init_led_yellow()
+                init_led_yellow()
             else:
                 init_led_red()
 
             if rpm > 8000:
-                off_led_red()
-                off_led_green()
-                off_led_yellow()
                 rpm = 0
                 reproducir_sonido(True)  # Reproducir sonido al cambiar de marcha
                 marcha += 1

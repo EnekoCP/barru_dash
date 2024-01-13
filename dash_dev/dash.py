@@ -174,6 +174,9 @@ def reproducir_sonido(cambio_marcha):
         pygame.mixer.music.load("cambioMarcha.mp3")  # Cambia "cambio_marcha.mp3" al nombre de tu archivo de sonido
         pygame.mixer.music.play(loops=3)
 
+def parar_sonido():
+    pygame.mixer.music.stop()
+
 def mostrar_marcha_y_rpm(device, marcha, rpm):
     with canvas(device) as draw:
         text(draw, (1, 0), f"{marcha}", fill="white", font=proportional(CP437_FONT))

@@ -82,9 +82,10 @@ def init_led_green():
 def off_led_green():
     global led_green
     # Apaga el LED
-    GPIO.output(22, GPIO.LOW)
-    led_green = False
-    print("LED apagado")
+    if led_green:
+        GPIO.output(22, GPIO.LOW)
+        led_green = False
+        print("LED apagado")
 
 
 def init_led_yellow():
@@ -99,9 +100,10 @@ def init_led_yellow():
 def off_led_yellow():
     global led_yellow
     # Apaga el LED
-    GPIO.output(27, GPIO.LOW)
-    led_yellow = False
-    print("LED apagado")
+    if led_yellow:
+        GPIO.output(27, GPIO.LOW)
+        led_yellow = False
+        print("LED apagado")
 
 
 def init_led_red():
@@ -116,9 +118,10 @@ def init_led_red():
 def off_led_red():
     global led_red
     # Apaga el LED
-    GPIO.output(17, GPIO.LOW)
-    led_red = False
-    print("LED apagado")
+    if led_red:
+        GPIO.output(17, GPIO.LOW)
+        led_red = False
+        print("LED apagado")
 
 
 def init_leds():

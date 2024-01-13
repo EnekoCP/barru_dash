@@ -124,8 +124,9 @@ def off_led_red():
         print("LED apagado")
 
 
-def init_leds():
+def init_leds_oled():
     global led_red, led_yellow, led_green
+    init_oled()
     init_led_red()
     time.sleep(3)
     init_led_yellow()
@@ -142,8 +143,6 @@ def init_oled():
     # Display updated image
     oled.image(image)
     oled.show()
-
-    time.sleep(3)
 
 
 def limpiar_oled():
@@ -240,8 +239,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     try:
-        init_leds()
-        init_oled()
+        init_leds_oled()
         limpiar_oled()
         demo_tablero_coche(args.cascaded, args.block_orientation, args.rotate, args.reverse_order)
     except KeyboardInterrupt:

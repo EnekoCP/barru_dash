@@ -134,9 +134,6 @@ def init_leds():
     time.sleep(5)
     reproducir_sonido(True)
 
-    GPIO.output(17, GPIO.LOW)
-    GPIO.output(27, GPIO.LOW)
-    GPIO.output(22, GPIO.LOW)
     led_green = False
     led_yellow = False
     led_red = False

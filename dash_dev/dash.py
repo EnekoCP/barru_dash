@@ -207,8 +207,10 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
                 init_led_green()
             elif 3000 < rpm <= 5000:
                 init_led_yellow()
-            else:
+            elif 5000 < rpm <= 8000:
                 init_led_red()
+            else:
+                pass
 
             if rpm > 8000:
                 rpm = 0

@@ -134,10 +134,6 @@ def init_leds():
     time.sleep(5)
     reproducir_sonido(True)
 
-    led_green = False
-    led_yellow = False
-    led_red = False
-
 
 def init_oled():
     draw.text((0, 0), "SUBARU IMPREZA", font=font, fill=255)

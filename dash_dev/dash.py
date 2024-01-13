@@ -185,8 +185,6 @@ def mostrar_marcha_y_rpm(device, marcha, rpm):
         if rpm >= 7500:
             reproducir_sonido(True)  # Reproducir sonido al cambiar de marcha
             draw.rectangle((0, 0, device.width, device.height), outline="red", fill="red")
-            time.sleep(2)
-
 
 def demo_tablero_coche(n, block_orientation, rotate, inreverse):
     # crear el dispositivo de la matriz

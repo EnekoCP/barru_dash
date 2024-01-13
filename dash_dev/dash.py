@@ -170,6 +170,7 @@ def reproducir_sonido(cambio_marcha):
     if cambio_marcha:
         pygame.mixer.music.load("cambioMarcha.mp3")  # Cambia "cambio_marcha.mp3" al nombre de tu archivo de sonido
         pygame.mixer.music.play()
+        pygame.mixer.music.stop()
 
 
 def mostrar_marcha_y_rpm(device, marcha, rpm):

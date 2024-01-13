@@ -217,7 +217,7 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
                 off_led_red()
                 off_led_green()
                 off_led_yellow()
-                time.sleep(2)
+                time.sleep(1)
                 marcha += 1
                 if marcha > 6:
                     marcha = 1

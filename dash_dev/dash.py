@@ -124,13 +124,16 @@ def off_led_red():
 def init_leds():
     global led_red, led_yellow, led_green
     init_led_red()
-    time.sleep(5)
+    time.sleep(4)
     init_led_yellow()
-    time.sleep(5)
+    time.sleep(3)
     init_led_green()
     time.sleep(5)
     reproducir_sonido(True)
 
+    GPIO.output(17, GPIO.LOW)
+    GPIO.output(27, GPIO.LOW)
+    GPIO.output(22, GPIO.LOW)
     led_green = False
     led_yellow = False
     led_red = False
@@ -169,9 +172,7 @@ def update_oled(rpm):
 def reproducir_sonido(cambio_marcha):
     if cambio_marcha:
         pygame.mixer.music.load("cambioMarcha.mp3")  # Cambia "cambio_marcha.mp3" al nombre de tu archivo de sonido
-        pygame.mixer.music.play()
-        pygame.mixer.music.stop()
-
+        pygame.mixer.music.play(loops=3)
 
 def mostrar_marcha_y_rpm(device, marcha, rpm):
     with canvas(device) as draw:

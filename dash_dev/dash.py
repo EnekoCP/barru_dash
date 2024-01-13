@@ -120,11 +120,11 @@ def off_led_red():
 def init_leds():
     global led_red, led_yellow, led_green
     init_led_red()
-    time.sleep(3)
+    time.sleep(5)
     init_led_yellow()
-    time.sleep(3)
+    time.sleep(5)
     init_led_green()
-    time.sleep(3)
+    time.sleep(5)
     reproducir_sonido(True)
 
     led_green = False

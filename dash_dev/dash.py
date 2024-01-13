@@ -212,6 +212,10 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
 
             if rpm > 8000:
                 rpm = 0
+                off_led_red()
+                off_led_green()
+                off_led_yellow()
+                time.sleep(2)
                 reproducir_sonido(True)  # Reproducir sonido al cambiar de marcha
                 marcha += 1
                 if marcha > 6:

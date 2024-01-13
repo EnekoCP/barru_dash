@@ -24,6 +24,10 @@ GPIO.setup(17, GPIO.OUT)  # Utiliza el pin GPIO17 para el LED
 GPIO.setup(27, GPIO.OUT)  # Utiliza el pin GPIO27 para el LED
 GPIO.setup(22, GPIO.OUT)  # Utiliza el pin GPIO22 para el LED
 
+GPIO.output(17, GPIO.LOW)
+GPIO.output(27, GPIO.LOW)
+GPIO.output(22, GPIO.LOW)
+
 led_green = False
 led_yellow = False
 led_red = False

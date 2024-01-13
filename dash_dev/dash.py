@@ -204,19 +204,19 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
             update_oled(rpm)
 
             if 500 <= rpm <= 3000:
-                init_led_green()
+                off_led_green()
             elif 3000 < rpm <= 5000:
-                init_led_yellow()
+                off_led_yellow()
             elif 5000 < rpm <= 8000:
-                init_led_red()
+                off_led_red()
             else:
                 pass
 
             if rpm > 8000:
                 rpm = 0
-                off_led_red()
-                off_led_green()
-                off_led_yellow()
+                init_led_red()
+                init_led_green()
+                init_led_yellow()
                 time.sleep(1)
                 marcha += 1
                 if marcha > 6:
@@ -247,9 +247,6 @@ if __name__ == "__main__":
         init_leds()
         init_oled()
         limpiar_oled()
-        GPIO.output(17, GPIO.LOW)
-        GPIO.output(27, GPIO.LOW)
-        GPIO.output(22, GPIO.LOW)
         demo_tablero_coche(args.cascaded, args.block_orientation, args.rotate, args.reverse_order)
     except KeyboardInterrupt:
         pass

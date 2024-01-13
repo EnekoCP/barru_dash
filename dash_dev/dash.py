@@ -205,14 +205,11 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
                 off_led_green()
                 off_led_yellow()
                 rpm = 0
-                cambio_marcha = True
+                reproducir_sonido(True)  # Reproducir sonido al cambiar de marcha
                 marcha += 1
                 if marcha > 6:
                     marcha = 1
-            else:
-                cambio_marcha = False
 
-            reproducir_sonido(cambio_marcha)  # Reproducir sonido al cambiar de marcha
             mostrar_marcha_y_rpm(device, marcha, rpm)
             time.sleep(0.1)
 

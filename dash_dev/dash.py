@@ -203,7 +203,7 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
             rpm += 200
             update_oled(rpm)
 
-            if 1000 <= rpm <= 3000:
+            if 500 <= rpm <= 3000:
                 init_led_green()
             elif 3000 < rpm <= 5000:
                 init_led_yellow()

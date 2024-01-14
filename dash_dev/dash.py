@@ -137,7 +137,7 @@ def init_leds_oled():
 
 
 def init_oled():
-    draw.text((27, 5), "SUBARU IMPREZA", font=font1, fill=255)
+    draw.text((10, 5), "SUBARU IMPREZA", font=font1, fill=255)
     draw.text((25, 17), "SimHub by CHUME", font=font, fill=255)
 
     # Display updated image

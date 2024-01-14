@@ -59,7 +59,7 @@ draw = ImageDraw.Draw(image)
 draw.rectangle((0, 0, oled.width, oled.height), outline=0, fill=0)
 # Load default font.
 font = ImageFont.load_default()
-font1 = ImageFont.truetype('fuente1.TTF', 8)
+font1 = ImageFont.truetype('fuente1.TTF', 6)
 font2 = ImageFont.truetype('fuente1.TTF', 5)
 
 # Carga una imagen desde un archivo

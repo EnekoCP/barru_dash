@@ -158,8 +158,8 @@ def update_oled(rpm, tempRef, tempAir):
     limpiar_oled()
     # Crea un objeto ImageDraw para dibujar en la imagen
     draw.text((0, 0), "RPM: {}".format(rpm), font=font3, fill=255)
-    draw.text((0, 15), "TEMP Ref: {} C*".format(tempRef), font=font2, fill=255)
-    draw.text((0, 22), "TEMP Air: {} C*".format(tempAir), font=font2, fill=255)
+    draw.text((0, 15), "-TEMP Ref: {} C".format(tempRef), font=font2, fill=255)
+    draw.text((0, 22), "-TEMP Air: {} C".format(tempAir), font=font2, fill=255)
 
     # Display updated image
     oled.image(image)

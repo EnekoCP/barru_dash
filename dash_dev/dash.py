@@ -1,4 +1,3 @@
-import re
 import time
 import argparse
 
@@ -7,9 +6,8 @@ import pygame
 from luma.led_matrix.device import max7219
 from luma.core.interface.serial import spi, noop
 from luma.core.render import canvas
-from luma.core.virtual import viewport
-from luma.core.legacy import text, show_message
-from luma.core.legacy.font import proportional, CP437_FONT, TINY_FONT, SINCLAIR_FONT, LCD_FONT
+from luma.core.legacy import text
+from luma.core.legacy.font import proportional, CP437_FONT
 
 import board
 import digitalio
@@ -60,7 +58,8 @@ draw = ImageDraw.Draw(image)
 
 draw.rectangle((0, 0, oled.width, oled.height), outline=0, fill=0)
 # Load default font.
-font = ImageFont.load_default()
+# font = ImageFont.load_default()
+font = ImageFont.truetype('fuente.TTF', 8)
 
 # Carga una imagen desde un archivo
 image_path = "subaru.bmp"  # Cambia la ruta a tu imagen
@@ -169,8 +168,10 @@ def reproducir_sonido(cambio_marcha):
         pygame.mixer.music.load("cambioMarcha.mp3")  # Cambia "cambio_marcha.mp3" al nombre de tu archivo de sonido
         pygame.mixer.music.play(loops=3)
 
+
 def parar_sonido():
     pygame.mixer.music.stop()
+
 
 def mostrar_marcha_y_rpm(device, marcha, rpm):
     with canvas(device) as draw:
@@ -180,6 +181,7 @@ def mostrar_marcha_y_rpm(device, marcha, rpm):
         if rpm >= 7500:
             reproducir_sonido(True)  # Reproducir sonido al cambiar de marcha
             draw.rectangle((0, 0, device.width, device.height), outline="red", fill="red")
+
 
 def demo_tablero_coche(n, block_orientation, rotate, inreverse):
     # crear el dispositivo de la matriz

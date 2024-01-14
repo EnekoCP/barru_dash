@@ -141,7 +141,7 @@ def init_led_blue():
     # Enciende el LED
     if not led_blue:
         led_blue = True
-        GPIO.output(5, GPIO.HIGH)
+        GPIO.output(13, GPIO.HIGH)
         print("LED encendido")
 
 
@@ -149,7 +149,7 @@ def off_led_blue():
     global led_blue
     # Apaga el LED
     if led_blue:
-        GPIO.output(5, GPIO.LOW)
+        GPIO.output(13, GPIO.LOW)
         led_blue = False
         print("LED apagado")
 
@@ -177,7 +177,7 @@ def init_led_white():
     # Enciende el LED
     if not led_white:
         led_white = True
-        GPIO.output(13, GPIO.HIGH)
+        GPIO.output(5, GPIO.HIGH)
         print("LED encendido")
 
 
@@ -185,7 +185,7 @@ def off_led_white():
     global led_white
     # Apaga el LED
     if led_white:
-        GPIO.output(13, GPIO.LOW)
+        GPIO.output(5, GPIO.LOW)
         led_white = False
         print("LED apagado")
 

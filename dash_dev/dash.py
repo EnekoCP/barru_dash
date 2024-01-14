@@ -271,8 +271,8 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
         while True:
             # Simular el aumento de RPM
             rpm += 200
-            tempRef += 5
-            tempAir += 5
+            tempRef += 1
+            tempAir += 1
             update_oled(rpm, tempRef, tempAir)
 
             if 500 <= rpm <= 3000:
@@ -285,13 +285,14 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
                 pass
 
             if tempRef < 80:
-                init_led_blue()
-            else:
                 off_led_blue()
-            if tempAir < 80:
-                init_led_orange()
             else:
+                init_led_blue()
+
+            if tempAir < 80:
                 off_led_orange()
+            else:
+                init_led_orange()
 
             if rpm > 8000:
                 rpm = 0

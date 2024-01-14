@@ -155,7 +155,7 @@ def update_oled(rpm):
     limpiar_oled()
     # Crea un objeto ImageDraw para dibujar en la imagen
     draw.text((0, 0), "RPM: {}".format(rpm), font=font, fill=255)
-    draw.text((0, 12), "TEMP: 50 l", font=font, fill=255)
+    draw.text((0, 12), "TEMP:" + temp + "Cº", font=font, fill=255)
 
     # Display updated image
     oled.image(image)
@@ -192,11 +192,13 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
     # iniciar la demostración
     marcha = 1
     rpm = 0
+    temp = 0
 
     try:
         while True:
             # Simular el aumento de RPM
             rpm += 200
+            temp += 5
             update_oled(rpm)
 
             if 500 <= rpm <= 3000:

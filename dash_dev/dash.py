@@ -58,8 +58,7 @@ draw = ImageDraw.Draw(image)
 
 draw.rectangle((0, 0, oled.width, oled.height), outline=0, fill=0)
 # Load default font.
-# font = ImageFont.load_default()
-font = ImageFont.truetype('fuente2.TTF', 8)
+font = ImageFont.load_default()
 
 # Carga una imagen desde un archivo
 image_path = "subaru.bmp"  # Cambia la ruta a tu imagen
@@ -243,6 +242,7 @@ if __name__ == "__main__":
     try:
         init_leds_oled()
         limpiar_oled()
+        font = ImageFont.truetype('fuente1.TTF', 8)
         demo_tablero_coche(args.cascaded, args.block_orientation, args.rotate, args.reverse_order)
     except KeyboardInterrupt:
         pass

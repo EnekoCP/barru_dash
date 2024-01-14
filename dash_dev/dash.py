@@ -139,7 +139,7 @@ def init_leds_oled():
 
 def init_oled():
     draw.text((0, 5), "SUBARU IMPREZA", font=font1, fill=255)
-    draw.text((25, 17), "SimHub by CHUME", font=font, fill=255)
+    draw.text((20, 17), "SimHub by CHUME", font=font, fill=255)
 
     # Display updated image
     oled.image(image)
@@ -158,8 +158,8 @@ def update_oled(rpm, tempRef, tempAir):
     limpiar_oled()
     # Crea un objeto ImageDraw para dibujar en la imagen
     draw.text((0, 0), "RPM: {}".format(rpm), font=font3, fill=255)
-    draw.text((0, 15), "TEMP Ref: {} C".format(tempRef), font=font2, fill=255)
-    draw.text((0, 22), "TEMP Air: {} C".format(tempAir), font=font2, fill=255)
+    draw.text((0, 15), "TEMP Ref: {} C*".format(tempRef), font=font2, fill=255)
+    draw.text((0, 22), "TEMP Air: {} C*".format(tempAir), font=font2, fill=255)
 
     # Display updated image
     oled.image(image)
@@ -177,6 +177,7 @@ def parar_sonido():
 
 
 def mostrar_marcha_y_rpm(device, marcha, rpm):
+    parar_sonido()
     with canvas(device) as draw:
         text(draw, (1, 0), f"{marcha}", fill="white", font=proportional(CP437_FONT))
         # text(draw, (0, 10), f"RPM: {rpm}", fill="white", font=proportional(CP437_FONT))

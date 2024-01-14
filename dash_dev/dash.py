@@ -59,7 +59,7 @@ draw = ImageDraw.Draw(image)
 draw.rectangle((0, 0, oled.width, oled.height), outline=0, fill=0)
 # Load default font.
 # font = ImageFont.load_default()
-font = ImageFont.truetype('fuente.TTF', 8)
+font = ImageFont.truetype('fuente2.TTF', 8)
 
 # Carga una imagen desde un archivo
 image_path = "subaru.bmp"  # Cambia la ruta a tu imagen

@@ -155,8 +155,8 @@ def update_oled(rpm, tempRef, tempAir):
     limpiar_oled()
     # Crea un objeto ImageDraw para dibujar en la imagen
     draw.text((0, 0), "RPM: {}".format(rpm), font=font, fill=255)
-    draw.text((0, 12), "TEMP Refr: {} Cº".format(tempRef), font=font, fill=255)
-    draw.text((0, 24), "TEMP Air: {} Cº".format(tempAir), font=font, fill=255)
+    draw.text((0, 12), "TEMP Refr: {} Cº".format(tempRef), font=font2, fill=255)
+    draw.text((0, 24), "TEMP Air: {} Cº".format(tempAir), font=font2, fill=255)
 
     # Display updated image
     oled.image(image)
@@ -248,6 +248,7 @@ if __name__ == "__main__":
         init_leds_oled()
         limpiar_oled()
         font = ImageFont.truetype('fuente1.TTF', 8)
+        font2 = ImageFont.truetype('fuente1.TTF', 5)
         demo_tablero_coche(args.cascaded, args.block_orientation, args.rotate, args.reverse_order)
     except KeyboardInterrupt:
         pass

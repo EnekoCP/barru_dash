@@ -59,6 +59,8 @@ draw = ImageDraw.Draw(image)
 draw.rectangle((0, 0, oled.width, oled.height), outline=0, fill=0)
 # Load default font.
 font = ImageFont.load_default()
+font1 = ImageFont.truetype('fuente1.TTF', 8)
+font2 = ImageFont.truetype('fuente1.TTF', 5)
 
 # Carga una imagen desde un archivo
 image_path = "subaru.bmp"  # Cambia la ruta a tu imagen
@@ -135,7 +137,7 @@ def init_leds_oled():
 
 
 def init_oled():
-    draw.text((27, 5), "SUBARU IMPREZA", font=font, fill=255)
+    draw.text((27, 5), "SUBARU IMPREZA", font=font1, fill=255)
     draw.text((25, 17), "SimHub by CHUME", font=font, fill=255)
 
     # Display updated image
@@ -154,9 +156,9 @@ def limpiar_oled():
 def update_oled(rpm, tempRef, tempAir):
     limpiar_oled()
     # Crea un objeto ImageDraw para dibujar en la imagen
-    draw.text((0, 0), "RPM: {}".format(rpm), font=font, fill=255)
-    draw.text((0, 12), "TEMP Refr: {} Cº".format(tempRef), font=font2, fill=255)
-    draw.text((0, 24), "TEMP Air: {} Cº".format(tempAir), font=font2, fill=255)
+    draw.text((0, 0), "RPM: {}".format(rpm), font=font1, fill=255)
+    draw.text((0, 12), "TEMP Ref: {} C".format(tempRef), font=font2, fill=255)
+    draw.text((0, 24), "TEMP Air: {} C".format(tempAir), font=font2, fill=255)
 
     # Display updated image
     oled.image(image)
@@ -247,8 +249,6 @@ if __name__ == "__main__":
     try:
         init_leds_oled()
         limpiar_oled()
-        font = ImageFont.truetype('fuente1.TTF', 8)
-        font2 = ImageFont.truetype('fuente1.TTF', 5)
         demo_tablero_coche(args.cascaded, args.block_orientation, args.rotate, args.reverse_order)
     except KeyboardInterrupt:
         pass

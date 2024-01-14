@@ -151,7 +151,7 @@ def limpiar_oled():
 
 
 # Function to update OLED with new data
-def update_oled(rpm):
+def update_oled(rpm, temp):
     limpiar_oled()
     # Crea un objeto ImageDraw para dibujar en la imagen
     draw.text((0, 0), "RPM: {}".format(rpm), font=font, fill=255)
@@ -199,7 +199,7 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
             # Simular el aumento de RPM
             rpm += 200
             temp += 5
-            update_oled(rpm)
+            update_oled(rpm, temp)
 
             if 500 <= rpm <= 3000:
                 off_led_green()

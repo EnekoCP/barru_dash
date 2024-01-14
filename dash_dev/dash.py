@@ -22,13 +22,24 @@ GPIO.setup(17, GPIO.OUT)  # Utiliza el pin GPIO17 para el LED
 GPIO.setup(27, GPIO.OUT)  # Utiliza el pin GPIO27 para el LED
 GPIO.setup(22, GPIO.OUT)  # Utiliza el pin GPIO22 para el LED
 
+GPIO.setup(5, GPIO.OUT)  # Utiliza el pin GPIO5 para el LED
+GPIO.setup(6, GPIO.OUT)  # Utiliza el pin GPIO6 para el LED
+GPIO.setup(13, GPIO.OUT)  # Utiliza el pin GPIO13 para el LED
+
 GPIO.output(17, GPIO.LOW)
 GPIO.output(27, GPIO.LOW)
 GPIO.output(22, GPIO.LOW)
 
+GPIO.output(5, GPIO.LOW)
+GPIO.output(6, GPIO.LOW)
+GPIO.output(13, GPIO.LOW)
+
 led_green = False
 led_yellow = False
 led_red = False
+led_white = False
+led_orange = False
+led_blue = False
 
 # Inicializamos pygame
 pygame.init()
@@ -125,14 +136,71 @@ def off_led_red():
         print("LED apagado")
 
 
+def init_led_blue():
+    global led_blue
+    # Enciende el LED
+    if not led_blue:
+        led_blue = True
+        GPIO.output(5, GPIO.HIGH)
+        print("LED encendido")
+
+
+def off_led_blue():
+    global led_blue
+    # Apaga el LED
+    if led_blue:
+        GPIO.output(5, GPIO.LOW)
+        led_blue = False
+        print("LED apagado")
+
+
+def init_led_orange():
+    global led_orange
+    # Enciende el LED
+    if not led_orange:
+        led_orange = True
+        GPIO.output(6, GPIO.HIGH)
+        print("LED encendido")
+
+
+def off_led_orange():
+    global led_orange
+    # Apaga el LED
+    if led_orange:
+        GPIO.output(6, GPIO.LOW)
+        led_orange = False
+        print("LED apagado")
+
+
+def init_led_white():
+    global led_white
+    # Enciende el LED
+    if not led_white:
+        led_white = True
+        GPIO.output(13, GPIO.HIGH)
+        print("LED encendido")
+
+
+def off_led_white():
+    global led_white
+    # Apaga el LED
+    if led_white:
+        GPIO.output(13, GPIO.LOW)
+        led_white = False
+        print("LED apagado")
+
+
 def init_leds_oled():
     global led_red, led_yellow, led_green
     init_oled()
     init_led_red()
+    init_led_blue()
     time.sleep(3)
     init_led_yellow()
+    init_led_orange()
     time.sleep(2)
     init_led_green()
+    init_led_white()
     time.sleep(5)
     reproducir_sonido(True)
 

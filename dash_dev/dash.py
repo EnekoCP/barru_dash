@@ -248,7 +248,6 @@ def mostrar_marcha_y_rpm(device, marcha, rpm):
     parar_sonido()
     with canvas(device) as draw:
         text(draw, (1, 0), f"{marcha}", fill="white", font=proportional(CP437_FONT))
-        # text(draw, (0, 10), f"RPM: {rpm}", fill="white", font=proportional(CP437_FONT))
 
         if rpm >= 7500:
             reproducir_sonido(True)  # Reproducir sonido al cambiar de marcha
@@ -284,6 +283,15 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
                 off_led_red()
             else:
                 pass
+
+            if tempRef < 80:
+                init_led_blue()
+            else:
+                off_led_blue()
+            if tempAir < 80:
+                init_led_orange()
+            else:
+                off_led_orange()
 
             if rpm > 8000:
                 rpm = 0

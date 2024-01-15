@@ -309,6 +309,8 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
             else:
                 init_led_orange()
 
+            mostrar_marcha_y_rpm(device, marcha, rpm)
+
             if rpm > rpm_corte:
                 rpm = 0
                 init_led_red()
@@ -319,7 +321,6 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
                 if marcha > 5:
                     marcha = 1
 
-            mostrar_marcha_y_rpm(device, marcha, rpm)
             time.sleep(0.1)
 
     except KeyboardInterrupt:

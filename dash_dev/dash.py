@@ -247,6 +247,7 @@ def parar_sonido():
 
 
 def mostrar_marcha_y_rpm(device, marcha, rpm):
+    global rpm_corte
     parar_sonido()
     with canvas(device) as draw:
         text(draw, (1, 0), f"{marcha}", fill="white", font=proportional(CP437_FONT))

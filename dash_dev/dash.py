@@ -81,6 +81,8 @@ imageSubaru = Image.open(image_path).convert("1")  # Convierte a modo 1-bit (bla
 # Escala la imagen si es necesario
 imageSubaru = imageSubaru.resize((32, 32), Image.ANTIALIAS)
 
+rpm_corte = 3500
+
 
 def init_led_green():
     global led_green
@@ -256,6 +258,7 @@ def mostrar_marcha_y_rpm(device, marcha, rpm):
 
 def demo_tablero_coche(n, block_orientation, rotate, inreverse):
     # crear el dispositivo de la matriz
+    global rpm_corte
     serial = spi(port=0, device=0, gpio=noop())
     device = max7219(serial, cascaded=n or 1, block_orientation=block_orientation,
                      rotate=rotate or 0, blocks_arranged_in_reverse_order=inreverse)
@@ -284,7 +287,18 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
             else:
                 pass
 
+            if 0 <= tempRef <= 45:
+                rpm_corte = 3500
+            elif 45 < tempRef <= 75:
+                rpm_corte = 5000
+            elif 75 < tempRef <= 90:
+                rpm_corte = 5500
+            else:
+                pass
+
             if tempRef < 80:
+                off_led_blue()
+            elif tempRef > 95:
                 off_led_blue()
             else:
                 init_led_blue()
@@ -294,7 +308,7 @@ def demo_tablero_coche(n, block_orientation, rotate, inreverse):
             else:
                 init_led_orange()
 
-            if rpm > 8000:
+            if rpm > rpm_corte:
                 rpm = 0
                 init_led_red()
                 init_led_green()

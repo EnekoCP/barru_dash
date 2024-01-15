@@ -251,7 +251,7 @@ def mostrar_marcha_y_rpm(device, marcha, rpm):
     with canvas(device) as draw:
         text(draw, (1, 0), f"{marcha}", fill="white", font=proportional(CP437_FONT))
 
-        if rpm >= 7500:
+        if rpm >= rpm_corte:
             reproducir_sonido(True)  # Reproducir sonido al cambiar de marcha
             draw.rectangle((0, 0, device.width, device.height), outline="red", fill="red")
 
